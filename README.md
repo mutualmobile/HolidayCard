@@ -7,6 +7,10 @@ Build a Holiday Card for Hour of Code in Swift!
 
 This is a sample project that can be used to lead a Swift class to introduce basic programming concepts in under an hour. You will be writing code in Swift to design and build your own holiday card. Instructions for use are included inside the various playgrounds. Please take this example and go support the Hour of Code initiative!
 
+<p align="center">
+<img src="HolidayCardPreview.png") alt="Holiday Card Preview"/>
+</p>
+
 The project includes a few parts:
 
 - CardBuilder Framework
