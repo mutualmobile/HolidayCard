@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:CardPreview/CardPreview.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CardBuilder/CardBuilder.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:Lesson.playground">
+   </FileRef>
+   <FileRef
+      location = "container:Student.playground">
+   </FileRef>
+   <FileRef
+      location = "container:Template.playground">
+   </FileRef>
+</Workspace>
