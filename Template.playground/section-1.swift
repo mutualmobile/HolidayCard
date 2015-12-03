@@ -1,6 +1,9 @@
 // Playground - noun: a place where people can play
 
 import UIKit
+import XCPlayground
+
+// This helps you build cards
 import CardBuilder
 
 
@@ -85,13 +88,9 @@ printCard(card)
 // Use this to find your printed card in the Finder
 printDocumentsDirectory()
 
-
-
-
-
-
-
-
+// Show card preview in Timeline view
+let imageView = UIImageView(image: printCard(card))
+XCPlaygroundPage.currentPage.liveView = imageView
 
 
 

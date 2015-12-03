@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var card = Card()
+        _ = Card()
 
         // Sometimes, you need a debugger. For that, there's CardPreview.
     }

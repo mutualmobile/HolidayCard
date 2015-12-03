@@ -15,8 +15,8 @@ public class Card : NSObject {
     
     public func debugQuickLookObject() -> AnyObject? {
         UIGraphicsBeginImageContext(view.bounds.size)
-        view.layer.renderInContext(UIGraphicsGetCurrentContext())
-        var image = UIGraphicsGetImageFromCurrentImageContext()
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image
@@ -89,9 +89,9 @@ public class Card : NSObject {
     }
     
     public func addClipArtImage(image : ClipArt) {
-        var existingView = clipArtDictionary[image]
+        let existingView = clipArtDictionary[image]
         
-        if let theExistingView = existingView {
+        if let _ = existingView {
             
         } else {
             let newView = UIImageView(frame: frameForClipArt(image))
@@ -103,11 +103,11 @@ public class Card : NSObject {
     }
     
     public func moveClipArtImageUp(image : ClipArt) {
-        var existingView = clipArtDictionary[image]
+        let existingView = clipArtDictionary[image]
         
         if let theExistingView = existingView {
-            let Y = existingView?.frame.origin.y
-            var newY = Y! - 40
+            let Y = theExistingView.frame.origin.y
+            var newY = Y - 40
             
             if (newY < 0) {
                 newY = 0
@@ -118,11 +118,11 @@ public class Card : NSObject {
     }
     
     public func moveClipArtImageDown(image : ClipArt) {
-        var existingView = clipArtDictionary[image]
+        let existingView = clipArtDictionary[image]
         
         if let theExistingView = existingView {
-            let Y = existingView?.frame.origin.y
-            var newY = Y! + 40
+            let Y = theExistingView.frame.origin.y
+            var newY = Y + 40
             
             if (newY < 0) {
                 newY = 0
@@ -133,11 +133,11 @@ public class Card : NSObject {
     }
     
     public func moveClipArtImageLeft(image : ClipArt) {
-        var existingView = clipArtDictionary[image]
+        let existingView = clipArtDictionary[image]
         
         if let theExistingView = existingView {
-            let X = existingView?.frame.origin.x
-            var newX = X! - 40
+            let X = theExistingView.frame.origin.x
+            var newX = X - 40
             
             if (newX < 0) {
                 newX = 0
@@ -148,11 +148,11 @@ public class Card : NSObject {
     }
     
     public func moveClipArtImageRight(image : ClipArt) {
-        var existingView = clipArtDictionary[image]
+        let existingView = clipArtDictionary[image]
         
         if let theExistingView = existingView {
-            let X = existingView?.frame.origin.x
-            var newX = X! + 40
+            let X = theExistingView.frame.origin.x
+            var newX = X + 40
             
             if (newX < 0) {
                 newX = 0
@@ -200,8 +200,6 @@ public class Card : NSObject {
             return UIColor(netHex: 0xf4f1e4)
         case .BlueSky:
             return UIColor(netHex: 0x80c6d7)
-        default:
-            return UIColor(netHex:0xBDDEF5)
         }
     }
     
@@ -229,8 +227,6 @@ public class Card : NSObject {
             imageName = "star"
         case .Tree:
             imageName = "tree"
-        default:
-            imageName = "snowman"
         }
         
         let bundle = NSBundle.mainBundle()
@@ -262,8 +258,6 @@ public class Card : NSObject {
             return CGRectMake(440, 120, 80, 80)
         case .Tree:
             return CGRectMake(60, 250, 120, 220)
-        default:
-            return CGRectMake(40, 60, 80, 80)
         }
     }
     
@@ -283,8 +277,6 @@ public class Card : NSObject {
             return UIFont(name: "SavoyeLetPlain", size: 96)!
         case .Zapfino:
             return UIFont(name: "Zapfino", size: 40)!
-        default:
-            UIFont(name: "MarkerFelt-Thin", size: 64)
         }
     }
     
@@ -304,8 +296,6 @@ public class Card : NSObject {
             return UIFont(name: "SavoyeLetPlain", size: 48)!
         case .Zapfino:
             return UIFont(name: "Zapfino", size: 28)!
-        default:
-            UIFont(name: "MarkerFelt-Thin", size: 32)
         }
     }
     
@@ -320,10 +310,13 @@ public class Card : NSObject {
         let bundle = NSBundle.mainBundle()
 
         let path = bundle.pathForResource(name, ofType: "ttf")
-        var data: NSData? = NSData.dataWithContentsOfMappedFile(path!) as? NSData
-        var providerRef = CGDataProviderCreateWithCFData(data)
-        var font = CGFontCreateWithDataProvider(providerRef)
-        CTFontManagerRegisterGraphicsFont(font, nil)
+        
+        if let fontPath = path {
+            let data = NSData(contentsOfFile: fontPath)
+            let providerRef = CGDataProviderCreateWithCFData(data)
+            let font = CGFontCreateWithDataProvider(providerRef)
+            CTFontManagerRegisterGraphicsFont(font!, nil)
+        }
     }
 }
 

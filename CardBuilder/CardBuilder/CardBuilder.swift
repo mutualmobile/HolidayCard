@@ -12,33 +12,33 @@ import QuartzCore
 
 public func printCard(card : Card) -> UIImage {
     
-    var pdfData = NSMutableData()
+    let pdfData = NSMutableData()
     
     UIGraphicsBeginPDFContextToData(pdfData, CGRectMake(0, 0, 640, 960), nil);
     UIGraphicsBeginPDFPage();
     
-    var pdfContext = UIGraphicsGetCurrentContext()
+    let pdfContext = UIGraphicsGetCurrentContext()
     
-    var pageView = UIView(frame: CGRectMake(0, 0, 640, 960))
+    let pageView = UIView(frame: CGRectMake(0, 0, 640, 960))
     card.view.frame.origin.y = 480
     pageView.addSubview(card.view)
     
-    pageView.layer.renderInContext(pdfContext)
+    pageView.layer.renderInContext(pdfContext!)
     
     UIGraphicsEndPDFContext();
     
     
-    var documentDirectories = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
-    var documentDirectory: AnyObject? = documentDirectories.first
+    let documentDirectories = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
+    let documentDirectory: AnyObject? = documentDirectories.first
 
-    var documentDirectoryFilename = documentDirectory?.stringByAppendingPathComponent("HolidayCard.pdf")
+    let documentDirectoryFilename = documentDirectory?.stringByAppendingPathComponent("HolidayCard.pdf")
     
     pdfData.writeToFile(documentDirectoryFilename!, atomically: true)
     
     
     UIGraphicsBeginImageContext(card.view.bounds.size)
-    card.view.layer.renderInContext(UIGraphicsGetCurrentContext())
-    var image = UIGraphicsGetImageFromCurrentImageContext()
+    card.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
     return image

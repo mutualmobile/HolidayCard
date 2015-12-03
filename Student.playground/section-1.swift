@@ -43,7 +43,13 @@ var card = Card()
 
 
 
-
+card.backgroundColor = blueSky
+card.addClipArtImage(snowflake1)
+card.addClipArtImage(dradle)
+card.addGreetingText("Happy Holidays!")
+card.changeGreetingFont(abrilFatFace)
+card.changeGreetingFont(zapfino)
+card.moveClipArtImageDown(dradle)
 
 
 // Print your card!
