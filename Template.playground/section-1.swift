@@ -91,7 +91,7 @@ printDocumentsDirectory()
 // Show card preview in Timeline view
 let imageView = UIImageView(image: printCard(card))
 XCPlaygroundPage.currentPage.liveView = imageView
-
+XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
 
 

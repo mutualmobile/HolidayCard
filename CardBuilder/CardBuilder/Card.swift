@@ -74,6 +74,7 @@ public class Card : NSObject {
         view.addSubview(messageLabel)
         
         clipArtDictionary = [ClipArt : UIImageView]()
+        imageCacheDictionary = [ClipArt : UIImage]()
     }
     
     public func addBackgroundColor(color : Color) {
@@ -177,7 +178,7 @@ public class Card : NSObject {
     private let greetingLabel : UILabel
     private let messageLabel : UILabel
     private var clipArtDictionary : [ClipArt : UIImageView]
-    
+    private var imageCacheDictionary : [ClipArt : UIImage]
     
     
 
@@ -204,6 +205,10 @@ public class Card : NSObject {
     }
     
     private func imageForClipArt(clipArt : ClipArt) -> UIImage {
+        if let image = imageCacheDictionary[clipArt] {
+            return image
+        }
+        
         var imageName = "snowman"
         
         switch(clipArt) {
@@ -232,6 +237,10 @@ public class Card : NSObject {
         let bundle = NSBundle.mainBundle()
         let path = bundle.pathForResource(imageName, ofType: "png")
         let image = UIImage(contentsOfFile: path!)
+        
+        if let cacheImage = image {
+            imageCacheDictionary[clipArt] = cacheImage
+        }
         
         return image!
     }
