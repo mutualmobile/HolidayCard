@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-public class Card : NSObject {
+private var imageCacheDictionary = [ClipArt : UIImage]()
+
+
+public class Card {
     
     let view : UIView
     
@@ -53,7 +56,7 @@ public class Card : NSObject {
     }
     
     
-    public override init() {
+    public init() {
         view = UIView(frame: CGRectMake(0, 0, 640, 480))
         
         Card.loadCustomFonts()
@@ -74,7 +77,6 @@ public class Card : NSObject {
         view.addSubview(messageLabel)
         
         clipArtDictionary = [ClipArt : UIImageView]()
-        imageCacheDictionary = [ClipArt : UIImage]()
     }
     
     public func addBackgroundColor(color : Color) {
@@ -178,7 +180,6 @@ public class Card : NSObject {
     private let greetingLabel : UILabel
     private let messageLabel : UILabel
     private var clipArtDictionary : [ClipArt : UIImageView]
-    private var imageCacheDictionary : [ClipArt : UIImage]
     
     
 

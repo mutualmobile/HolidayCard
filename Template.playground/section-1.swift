@@ -79,7 +79,7 @@ card.addClipArtImage(christmasTree)
 //card.moveClipArtImageUp(star)
 //card.moveClipArtImageRight(star)
 //card.moveClipArtImageRight(star)
-//card.moveClipArtImageLeft(christmasTree)
+card.moveClipArtImageLeft(christmasTree)
 
 
 // Print your card!
@@ -91,7 +91,6 @@ printDocumentsDirectory()
 // Show card preview in Timeline view
 let imageView = UIImageView(image: printCard(card))
 XCPlaygroundPage.currentPage.liveView = imageView
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
 
 
